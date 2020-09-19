@@ -1,45 +1,15 @@
 function PriorityQueue() {
   this.collection = [];
-  this.printCollection = function () {
-    console.log(this.collection);
-  };
-  // Only change code below this line
-  this.size = function () {
+  this.size = function() {
     return this.collection.length;
-  }
-  const insert = (index, data) => {
-    const length = this.size();
-    /* 
-      if index is equal to the length of the collection
-      then we don't need to do any shifting, just insert
-      at the end
-    */
-    if (index === length) {
-      this.collection.push(data);
-      return;
-    }
-    const newCollection = [];
-    let i = 0;
-    /*
-      Copy all the elements of the collection
-      to a new one, and also insert the new 
-      data at the index that we want
-    */
-    while (i < length) {
-      if (i === index)
-        newCollection.push(data);
-      newCollection.push(this.collection[i])
-      i++;
-    }
-    this.collection = newCollection;
-  }
-
+  };
+  // at first index is the data, second index is priority
   // [[a,1], [b,2], [c,2], [d,1]]
-  this.enqueue = function (newValue) {
+  this.enqueue = function(newValue) {
     const size = this.size();
     if (size === 0) {
       this.collection.push(newValue);
-      return
+      return;
     }
     /* find the index where newValue's priority would come
      assuming that priority is the least then it would come at
@@ -56,22 +26,22 @@ function PriorityQueue() {
         break;
       }
     }
-    insert(index, newValue);
-  }
+    const newCollection = [...this.collection];
+    newCollection.splice(index, 0, newValue);
+    this.collection = newCollection;
+  };
 
-  this.dequeue = function () {
-    if (this.isEmpty())
-      return "The queue is empty"
-    else
-      return this.collection.shift(1)[0];
-  }
+  this.dequeue = function() {
+    if (this.isEmpty()) return "The queue is empty";
+    else return this.collection.shift(1)[0];
+  };
 
-  this.front = function () {
+  this.front = function() {
     return this.collection[0][0];
-  }
+  };
 
-  this.isEmpty = function () {
+  this.isEmpty = function() {
     return this.collection.length === 0;
-  }
+  };
   // Only change code above this line
 }

@@ -20,7 +20,6 @@ class CircularQueue {
   }
 
   enqueue(item) {
-    // Only change code below this line
     // Write will have conditions for you to know to allow them
     // Write only if something hasn't been read
     // In this case only if the value is null you can write above it
