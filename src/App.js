@@ -13,7 +13,9 @@ import "./App.css";
 // import "./DsAlgo/ds/bst/bfs";
 // import "./DsAlgo/ds/binaryTree/dfs";
 // import "./DsAlgo/ds/binaryTree/invert";
-import "./DsAlgo/practice/Dijkstra";
+// import "./DsAlgo/practice/Dijkstra";
+// import "./DsAlgo/algo/arrays/nonDivisibleSubset";
+import "./DsAlgo/algo/dynamicProgramming/minimumChessMovesProblem";
 
 function App() {
   return (

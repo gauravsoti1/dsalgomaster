@@ -78,17 +78,15 @@ const vertices1 = {
   finish: "finish",
   a: "A",
   b: "B",
-  c: "C",
-  d: "D",
 };
 
 const graph1 = new Graph();
 Object.values(vertices1).forEach((vertex) => graph1.addVertex(vertex));
-graph1.addEdge(vertices1.start, vertices1.a, 5);
+graph1.addEdge(vertices1.start, vertices1.a, 6);
 graph1.addEdge(vertices1.start, vertices1.b, 2);
-graph1.addEdge(vertices1.a, vertices1.c, 4);
-graph1.addEdge(vertices1.b, vertices1.d, 7);
-graph1.addEdge(vertices1.c, vertices1.d, 6);
+graph1.addEdge(vertices1.b, vertices1.a, 3);
+graph1.addEdge(vertices1.a, vertices1.finish, 1);
+graph1.addEdge(vertices1.b, vertices1.finish, 5);
 graph1.print();
 
 graph1.dijkstra(vertices1.start, vertices1.finish);
