@@ -1,5 +1,3 @@
-const { print } = require("../helper");
-
 /*
   url: https://www.educative.io/courses/grokking-the-coding-interview/B8R83jyN3KY
   Difficulty: medium
@@ -115,14 +113,37 @@ function find_perms1(nums = []) {
       for (let position = 0; position < oldPermutation.length + 1; position++) {
         const newPermutation = oldPermutation.slice(0);
         newPermutation.splice(position, 0, currentNumber);
-        if (newPermutation.length === numsLength) {
-          result.push(newPermutation);
-        } else permuatations.push(newPermutation);
+        // if (newPermutation.length === numsLength) {
+        //   result.push(newPermutation);
+        // } else
+        permuatations.push(newPermutation);
       }
     }
   });
+  console.log("permutations ===", permuatations);
   return result;
 }
 
 console.log("Result find_perms1 ===");
 console.log(JSON.stringify(find_perms1([1, 3, 5])));
+// [[5,3,1],[3,5,1],[3,1,5],[5,1,3],[1,5,3],[1,3,5]]
+
+// All contagious string
+function allUniqueSubstrings(string) {
+  const array = [...string];
+  const result = new Set();
+  const length = array.length;
+  array.forEach((char, index) => {
+    result.add(char);
+    const currentValues = [];
+    currentValues.push(char);
+    for (let i = index + 1; i < length; i++) {
+      const value = currentValues.pop() + array[i];
+      result.add(value);
+      currentValues.push(value);
+    }
+  });
+  return Array.from(result).sort((a, b) => a.length - b.length);
+}
+
+console.log(allUniqueSubstrings("babb"));

@@ -17,13 +17,13 @@
 
 */
 
-const findSubsets = function (nums) {
+const findSubsets = function(nums) {
   let subsets = [];
   // First push an empty subset
   subsets.push([]);
   // let startIndex = 0,
   //   endIndex = subsets.length;
-  nums.forEach((a) => {
+  nums.forEach((a, index) => {
     // startIndex = 0;
     // endIndex = subsets.length;
     /*
@@ -35,6 +35,7 @@ const findSubsets = function (nums) {
       get with subsets.forEach
     */
     subsets.forEach((subset) => subsets.push([...subset, a]));
+    console.log("After iteration no ", index, JSON.stringify(subsets));
     // for (let i = startIndex; i < endIndex; i++) {
     //   subsets.push([...subsets[i], a]);
     // }
@@ -44,9 +45,24 @@ const findSubsets = function (nums) {
 
 console.log(
   "Here is the list of subsets:",
-  JSON.stringify(findSubsets([1, 3]))
+  JSON.stringify(findSubsets([1, 3, 3]))
 );
+// Output: Here is the list of subsets: [[],[1],[3],[1,3]]
+
 console.log(
   "Here is the list of subsets:",
-  JSON.stringify(findSubsets([1, 5, 3]))
+  JSON.stringify(findSubsets([1, 3, 3]))
 );
+/* 
+  [[],[1],[3],[1,3],[3],[1,3],[3,3],[1,3,3]]
+  Since there is a duplicate subset [1,3], this 
+  is the problem that we are trying to solve, which
+  we will do it subsetsWithDuplicates.js
+*/
+
+// console.log(
+//   "Here is the list of subsets:",
+//   JSON.stringify(findSubsets([1, 5, 3]))
+// );
+
+// Output: Here is the list of subsets: [[],[1],[5],[1,5],[3],[1,3],[5,3],[1,5,3]]

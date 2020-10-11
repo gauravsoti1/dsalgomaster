@@ -4,7 +4,10 @@
   Time and Space Complexity same as subsets
 */
 
-const findSubsets = function (nums) {
+// Duplicate means that initial array can have duplicate values
+// and when we are generating subsets, we need to make sure that
+// we don't create duplicate subsets
+const findSubsets = function(nums) {
   let subsets = [];
   // First push an empty subset
   subsets.push([]);
@@ -17,7 +20,7 @@ const findSubsets = function (nums) {
   */
   nums.forEach((a, index) => {
     /*
-      this is the main part that avoids duplicate, here we change
+      this is the main part that avoids duplicate subsets, here we change
       the startIndex to the index of first subset that was generated in 
       the previous step. We always set endIndex to the length of subsets,
       so at the start of the each step, endIndex is pointing to the first element
@@ -26,9 +29,8 @@ const findSubsets = function (nums) {
       Because they haven't already been processed with our duplicate elements in the last step
       but all others have been 
     */
-    if (index > 0 && nums[index] === nums[index - 1]) {
-      startIndex = endIndex;
-    } else startIndex = 0;
+    // if the current character in subset is equal to the last value, startIndex should be endIndex
+    startIndex = index > 0 && nums[index] === nums[index - 1] ? endIndex : 0;
     endIndex = subsets.length;
     for (let i = startIndex; i < endIndex; i++) {
       subsets.push([...subsets[i], a]);
@@ -41,7 +43,16 @@ console.log(
   "Here is the list of subsets:",
   JSON.stringify(findSubsets([1, 3, 3]))
 );
-console.log(
-  "Here is the list of subsets:",
-  JSON.stringify(findSubsets([1, 5, 3, 3]))
-);
+/* 
+  After iteration no  0 [[],[1]]
+  After iteration no  1 [[],[1],[3],[1,3]]
+  After iteration no  2 [[],[1],[3],[1,3],[3,3],[1,3,3]]
+  Final Output: Here is the list of subsets: [[],[1],[3],[1,3],[3,3],[1,3,3]]
+*/
+
+// console.log(
+//   "Here is the list of subsets:",
+//   JSON.stringify(findSubsets([1, 5, 3, 3]))
+// );
+// Output: Here is the list of subsets: [[],[1],[5],[1,5],[3],[1,3],[5,3],[1,5,3],[3,3],[1,3,3],[5,3,3],[1,5,3,3]]
+

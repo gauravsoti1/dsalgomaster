@@ -3,6 +3,7 @@ function Cell(x, y) {
   this.y = y;
 }
 
+// this is not right
 function minChessMoves(source, destination) {
   const n = 8;
   let count = 0,

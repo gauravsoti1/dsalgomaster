@@ -15,7 +15,11 @@ import "./App.css";
 // import "./DsAlgo/ds/binaryTree/invert";
 // import "./DsAlgo/practice/Dijkstra";
 // import "./DsAlgo/algo/arrays/nonDivisibleSubset";
-import "./DsAlgo/algo/dynamicProgramming/minimumChessMovesProblem";
+// import "./DsAlgo/algo/dynamicProgramming/minimumChessMovesProblem";
+// import "./DsAlgo/subsets";
+// import "./DsAlgo/subsetsWithDuplicates";
+import "./DsAlgo/permutations";
+// import "javascript/webWorkers/index";
 
 function App() {
   return (
@@ -23,7 +27,7 @@ function App() {
       {/* <MinimumEditDistance /> */}
       {/* <DeleteDuplicates />
       <DeleteAllOccurencesOfK /> */}
-      <BuySellStockOnce />
+      {/* <BuySellStockOnce /> */}
     </div>
   );
 }
