@@ -76,3 +76,18 @@ const matrix = [
 const target = 1;
 
 searchMatrix(matrix, target);
+
+// practiced coding it again
+function binarySearch1(arr, target) {
+  const length = arr.length;
+  let start = 0,
+    end = length,
+    mid;
+  while (start <= end) {
+    mid = Math.floor((start + end) / 2);
+    if (arr[mid] === target) return mid;
+    else if (target > arr[mid]) start = mid + 1;
+    else end = mid - 1;
+  }
+  return -1;
+}

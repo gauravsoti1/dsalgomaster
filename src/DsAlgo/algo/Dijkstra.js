@@ -1,4 +1,4 @@
-const { default: Graph } = require("DsAlgo/ds/GraphDirected");
+const { default: Graph } = require("DsAlgo/ds/graph/GraphDirected");
 /*
   costs = {a: 5} -> means cost of a from start vertex is 5
 
@@ -87,6 +87,65 @@ graph1.addEdge(vertices1.start, vertices1.b, 2);
 graph1.addEdge(vertices1.b, vertices1.a, 3);
 graph1.addEdge(vertices1.a, vertices1.finish, 1);
 graph1.addEdge(vertices1.b, vertices1.finish, 5);
-graph1.print();
+// graph1.print();
 
 graph1.dijkstra(vertices1.start, vertices1.finish);
+
+function getLowestCostNode(costs, visited) {
+  let minCost = Number.POSITIVE_INFINITY,
+    resultVertex = null;
+  Object.entries(costs)
+    .filter(([vertex]) => !visited[vertex])
+    .forEach(([vertex, cost]) => {
+      if (cost < minCost) {
+        minCost = cost;
+        resultVertex = vertex;
+      }
+    });
+  return resultVertex;
+}
+
+function dijkstra1(startVertex, endVertex) {
+  const parents = {},
+    costs = {},
+    visited = {};
+  costs[startVertex] = 0;
+  parents[startVertex] = null;
+  let lowestCostNode = startVertex;
+  while (lowestCostNode) {
+    const cost = costs[lowestCostNode];
+    const neighbours = this.neighbours(lowestCostNode);
+    neighbours.forEach((neighbour) => {
+      costs[neighbour] = costs[neighbour] || Number.POSITIVE_INFINITY;
+      let newCost = this.graph[lowestCostNode][neighbour] + cost;
+      if (newCost < costs[neighbour]) {
+        costs[neighbour] = newCost;
+        parents[neighbour] = lowestCostNode;
+      }
+    });
+    visited[lowestCostNode] = true;
+    lowestCostNode = getLowestCostNode(costs, visited);
+  }
+
+  const result = [endVertex];
+  let parent = parents[endVertex];
+  while (parent) {
+    result.push(parent);
+    parent = parents[parent];
+  }
+  console.log("final cost === ", costs[endVertex]);
+  return result.reverse();
+}
+
+Graph.prototype.dijkstra1 = dijkstra1;
+
+const graph2 = new Graph();
+Object.values(vertices1).forEach((vertex) => graph2.addVertex(vertex));
+graph2.addEdge(vertices1.start, vertices1.a, 6);
+graph2.addEdge(vertices1.start, vertices1.b, 2);
+graph2.addEdge(vertices1.b, vertices1.a, 3);
+graph2.addEdge(vertices1.a, vertices1.finish, 1);
+graph2.addEdge(vertices1.b, vertices1.finish, 5);
+graph2.print();
+
+console.log(graph2.dijkstra1(vertices1.start, vertices1.finish));

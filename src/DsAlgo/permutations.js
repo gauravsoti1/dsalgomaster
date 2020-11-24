@@ -147,3 +147,4 @@ function allUniqueSubstrings(string) {
 }
 
 console.log(allUniqueSubstrings("babb"));
+// [ "b", "a", "ba", "ab", "bb", "bab", "abb", "babb" ]

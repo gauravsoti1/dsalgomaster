@@ -1,4 +1,4 @@
-const { default: Graph } = require("DsAlgo/ds/GraphDirected");
+const { default: Graph } = require("DsAlgo/ds/graph/GraphDirected");
 
 function getLowestCostNode(costs, processed) {
   let minCost = Number.POSITIVE_INFINITY;

@@ -45,7 +45,7 @@ const findSubsets = function(nums) {
 
 console.log(
   "Here is the list of subsets:",
-  JSON.stringify(findSubsets([1, 3, 3]))
+  JSON.stringify(findSubsets([1, 3]))
 );
 // Output: Here is the list of subsets: [[],[1],[3],[1,3]]
 

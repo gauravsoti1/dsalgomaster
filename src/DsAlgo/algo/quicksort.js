@@ -1,4 +1,39 @@
 /*
+  My beautiful code that I wrote later after reading grokking algorithms book,
+  works well and is understandable
+
+*/
+
+function getPivotIndex(arr = []) {
+  return Math.floor(Math.random() * arr.length);
+}
+
+function partition(arr = [], pivotIndex) {
+  const left = [],
+    right = [];
+  const pivot = arr[pivotIndex];
+  arr.forEach((elem, index) => {
+    if (index === pivotIndex) return;
+    if (elem < pivot) left.push(elem);
+    else right.push(elem);
+  });
+  return { left, pivot, right };
+}
+
+function quickSort(arr = []) {
+  if (arr.length < 2) return arr;
+  const pivotIndex = getPivotIndex(arr);
+  const { left, pivot, right } = partition(arr, pivotIndex);
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+/* ******* Complete here *******  */
+
+
+
+
+
+/*
   Did this in DS Algo masterclass udemy course
 */
 /*
@@ -39,7 +74,7 @@ function quickSortHelper(arr, start, end) {
       console.log(`swapped index ${j} with ${i} arr =`, arr);
       j++;
     }
-    // when you react the end of the array, swap key with the last j
+    // when you reach the end of the array, swap key with the last j
     if (i === end - 1) {
       temp = arr[key];
       arr[key] = arr[j - 1];

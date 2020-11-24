@@ -12,6 +12,12 @@ const findSubsets = function(nums) {
   // First push an empty subset
   subsets.push([]);
   let startIndex, endIndex;
+  /* 
+    I am adding this extra code
+    I think we should sort the nums first
+    Otherwise we won't be able to compare the duplicates
+  */
+  nums.sort();
   // here we are concerned about avoiding duplicates
   /* General psuedocode is that every time we process a new entry
      inside our nums array, we need to multiply it with all the 
@@ -56,3 +62,14 @@ console.log(
 // );
 // Output: Here is the list of subsets: [[],[1],[5],[1,5],[3],[1,3],[5,3],[1,5,3],[3,3],[1,3,3],[5,3,3],[1,5,3,3]]
 
+console.log(
+  "Here is the list of subsets:",
+  JSON.stringify(findSubsets([3, 1, 3]))
+);
+// [[],[1],[3],[1,3],[3,3],[1,3,3]]
+
+console.log(
+  "Here is the list of subsets:",
+  JSON.stringify(findSubsets([1, 3, 3, 3, 1]))
+);
+// [[],[1],[1,1],[3],[1,3],[1,1,3],[3,3],[1,3,3],[1,1,3,3],[3,3,3],[1,3,3,3],[1,1,3,3,3]]
