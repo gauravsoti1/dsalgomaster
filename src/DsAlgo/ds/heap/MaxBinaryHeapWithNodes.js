@@ -1,3 +1,30 @@
+function Node(name, priority) {
+  function compareTo(node) {
+    const priorityDifference = priority - node.priority;
+    if (priorityDifference === 0) return 0;
+    else if (priorityDifference < 0) return 1;
+    else return -1;
+  }
+  function isHigherPriorityThan(node) {
+    return priority < node.priority;
+  }
+
+  function isLowerPriorityThan(node) {
+    return priority > node.priority;
+  }
+  function toString() {
+    return `${name}, ${priority}`;
+  }
+  return {
+    name,
+    priority,
+    compareTo,
+    isHigherPriorityThan,
+    isLowerPriorityThan,
+    toString,
+  };
+}
+
 function MaxBinaryHeap() {
   let values = [];
   function getParentIndex(childIndex) {
@@ -24,7 +51,7 @@ function MaxBinaryHeap() {
     // is current node greater than parent
     // then swap the value
     // and repeat the process
-    if (current > parent) {
+    if (current.isHigherPriorityThan(parent)) {
       values[parentIndex] = current;
       values[index] = parent;
       bubbleUp(parentIndex);
@@ -41,16 +68,23 @@ function MaxBinaryHeap() {
     const parent = values[index];
     // --- this section is to get the max child ---- //
     const [leftChildIndex, rightChildIndex] = getChildrenIndices(index);
-    const leftChild = values[leftChildIndex] || Number.NEGATIVE_INFINITY;
-    const rightChild = values[rightChildIndex] || Number.NEGATIVE_INFINITY;
-    const maxChild = Math.max(leftChild, rightChild);
-    const maxChildIndex =
-      leftChild === maxChild ? leftChildIndex : rightChildIndex;
+    const leftChild =
+      values[leftChildIndex] || Node("", Number.NEGATIVE_INFINITY);
+    const rightChild =
+      values[rightChildIndex] || Node("", Number.NEGATIVE_INFINITY);
+    let maxChild, maxChildIndex;
+    if (leftChild.isHigherPriorityThan(rightChild)) {
+      maxChild = leftChild;
+      maxChildIndex = leftChildIndex;
+    } else {
+      maxChild = rightChild;
+      maxChildIndex = rightChildIndex;
+    }
     // --- section ends here ---- //
 
     // if parent is less than maxChild, we need to swap and then continue bubble down
     // for the max child
-    if (parent < maxChild) {
+    if (parent.isLowerPriorityThan(maxChild)) {
       values[index] = maxChild;
       values[maxChildIndex] = parent;
       bubbleDown(maxChildIndex);
@@ -81,40 +115,17 @@ function MaxBinaryHeap() {
   };
 }
 
-// let myHeap = MaxBinaryHeap();
-// const toInsert = [15, 5, 10, 25, 7, 2, 1, 30, 45];
-// myHeap.insert(...toInsert);
-// console.log("heap after inserting these values ->  ", JSON.stringify(toInsert));
-// myHeap.toString();
-// console.log("Popping, value removed === ", myHeap.pop());
-// console.log("Popping, value removed === ", myHeap.pop());
-
-// console.log("heap now: ");
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-// myHeap.pop();
-// myHeap.toString();
-
 // -- checking scenario when we have only one value in the heap --- //
 function testOnlyOneValueScenario() {
   let myHeap = MaxBinaryHeap();
-  myHeap.insert(5);
-  console.log("does heap contain value 5 at top?", myHeap.getValues()[0] === 5);
+  myHeap.insert(Node("First insert", 5));
+  myHeap.toString();
+  console.log(
+    "does heap contain value 5 at top?",
+    myHeap.getValues()[0].priority === 5
+  );
   const value = myHeap.pop();
-  console.log("is popped value 5?", value === 5);
+  console.log("is popped value 5?", value.priority === 5);
   console.log(
     "after popping value, is heap now empty ? ",
     myHeap.getValues().length === 0
@@ -123,26 +134,26 @@ function testOnlyOneValueScenario() {
 
 function testDuplicateValueScenario() {
   let myHeap = MaxBinaryHeap();
-  myHeap.insert(5, 10, 7, 10, 10);
-  console.log(
-    "heap should contain value 10 at top",
-    myHeap.getValues()[0] === 10
+  myHeap.insert(
+    Node("first insert", 5),
+    Node("second insert", 1),
+    Node("third insert", 7),
+    Node("fourth insert", 1),
+    Node("fifth insert", 1)
   );
-  const firstPop = myHeap.pop();
-  console.log("we should get 10 on popping", firstPop === 10);
-  const secondPop = myHeap.pop();
-  console.log("we should again get 10 on popping", secondPop === 10);
-  const thirdPop = myHeap.pop();
   console.log(
-    "we should again get 10 on popping, the third time",
-    thirdPop === 10
+    "heap should contain name second insert at top",
+    myHeap.getValues()[0].name === "second insert"
   );
-  const fourthPop = myHeap.pop();
-  console.log("fourth pop should be 7", fourthPop === 7);
-  const fifthPop = myHeap.pop();
-  console.log("fifth pop should be 5", fifthPop === 5);
-  const sixthPop = myHeap.pop();
-  console.log("sixth pop should be undefined", sixthPop === undefined);
+  myHeap.pop();
+  console.log(
+    "heap should contain name fourth insert at top",
+    myHeap.getValues()[0].name === "fourth insert"
+  );
+  myHeap.toString();
+
+  // myHeap.pop();
+  
 }
 
 // testOnlyOneValueScenario();
