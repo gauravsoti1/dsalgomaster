@@ -2,6 +2,7 @@
   My beautiful code that I wrote later after reading grokking algorithms book,
   works well and is understandable
 
+  But this code requires extra space
 */
 
 function getPivotIndex(arr = []) {
@@ -45,7 +46,7 @@ function quickSort(arr = []) {
   Worst case is that the array is already sorted and we have been able to divide it into n steps instead of logn step
   because at every step we are just get the first element of the range as sorted element
 */
-function quickSort(arr = []) {
+function quickSort1(arr = []) {
   // assuming that the array would always be greater than length = 1
   console.log("input array =", arr);
   quickSortHelper(arr, 0, arr.length);
