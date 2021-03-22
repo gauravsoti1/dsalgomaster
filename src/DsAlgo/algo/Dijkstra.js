@@ -18,6 +18,7 @@ function dijkstra(startVertex, endVertex) {
     costs[neighbour] = this.graph[startVertex][neighbour] || Infinity;
     parents[neighbour] = startVertex;
   });
+  // O(V)
   const getLowestCostNode = () => {
     let minCost = Infinity;
     let minVertex = null;
@@ -32,6 +33,7 @@ function dijkstra(startVertex, endVertex) {
       });
     return minVertex;
   };
+
   let lowestCostVertex = getLowestCostNode();
   while (lowestCostVertex) {
     // current cost of the vertex

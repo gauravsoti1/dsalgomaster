@@ -45,6 +45,12 @@ function getNewStateForACell(board, row, col) {
   return board[row][col];
 }
 
+
+/*
+  Time Complexity: O(m*n)
+  Space Complexity: O(m*n)
+*/
+
 /**
  * @param {number[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
