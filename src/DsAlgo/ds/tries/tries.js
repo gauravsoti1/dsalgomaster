@@ -85,3 +85,10 @@ function Trie() {
   t.insert("");
   console.log("is empty present?", t.search(""));
 })();
+
+// how the datastructure looks like
+(function root(){
+  const t = new Trie();
+  t.insert("yes");
+  t.print();
+})()
