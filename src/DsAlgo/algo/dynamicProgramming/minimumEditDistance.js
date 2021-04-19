@@ -38,6 +38,21 @@ function isPresent() {
 
 String.prototype.isPresent = isPresent;
 
+/*
+
+  how dp matrix looks like for words horse and ros
+          r  o  s 
+     [ 0, 1, 2, 3 ]
+  h  [ 1, 1, 2, 3 ]
+  o  [ 2, 2, 1, 2 ]
+  r  [ 3, 2, 2, 2 ]
+  s  [ 4, 3, 3, 2 ]
+  e  [ 5, 4, 4, 3 ]
+
+  index 0,0 means how many operations it would take to change an empty string to empty string which is 0
+  Index 2,1 means how many operations it would take to change "ho" to "r" which is 2, one delete or add, and one replace
+
+*/
 function minimumEditDistanceDP(str1, str2) {
   if (!str1.isPresent() || !str2.isPresent())
     throw new Error("Please provide both strings");
@@ -55,6 +70,8 @@ function minimumEditDistanceDP(str1, str2) {
       if (str1[row - 1] === str2[col - 1]) dp[row][col] = dp[row - 1][col - 1];
       else {
         // dp[row - 1][col - 1] : this I guess is for update operation
+        // inserting or deleting a char is same, as we can delete from one or add to another, it would give the same output
+        // replacing is going back 1 row and 1 col
         dp[row][col] =
           Math.min(dp[row - 1][col], dp[row][col - 1], dp[row - 1][col - 1]) +
           1; // 1 is for the 1 move we need to make: either replace, add or delete

@@ -11,7 +11,7 @@ function willFishesMeet(fish1Direction, fish2Direction) {
 
 function getFishesAtTop(stack) {
   const length = stack.length;
-  return [stack[stack.length - 2], stack[stack.length - 1]];
+  return [stack[length - 2], stack[length - 1]];
 }
 
 /*
@@ -21,6 +21,7 @@ function getFishesAtTop(stack) {
 
 /*
     max N = 100,000
+    Time Complexity: O(N)
 */
 function solution(sizes, directions) {
   let index = 0;
