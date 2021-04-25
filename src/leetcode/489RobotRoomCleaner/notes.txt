@@ -1,0 +1,62 @@
+If I am a dumb robot who has only 4 apis and can only move or turn left or right
+And I can be at any position in the room?
+How do I make sure that I clean the room?
+
+
+I don't know which position I am in at any time. I can be moving all the time and 
+cleaning same cells again and again.
+
+What if I try to move out of the grid? -> You get 0 as your answer to the move.
+
+Can I store positions in my own grid? Relative to my own position?
+How do I go about and do that? I think I can't have a fixed structure like a matrix
+because in that I don't know which index to start from.
+
+Maybe I need a graph and each cleanable cell is a node? 
+Maybe at first I should trace the graph?
+Maybe At every point I should start by going 1 pos forward, backward, right and left?
+What problem would that solve?
+
+If there are no blocks, we can easily clean row by row or col by col?
+In the above way, we don't have to worry about what position our robot is in.
+
+I don't understand what it means by robot is at start facing upwards.
+Up means if it is at second row, it would go towards first row.
+
+How do I get to know that the robot has cleaned all cells? -> Maybe I can't know
+the answer to this one, like a vaccum cleaner just cleans, you have to turn it off
+yourself?
+
+How to not repeat visiting same columns?
+
+room = [
+  [1,1,1,1,1,0,1,1],
+  [1,1,1,1,1,0,1,1],
+  [1,0,1,1,1,1,1,1],
+  [0,0,0,1,0,0,0,0],
+  [1,1,1,1,1,1,1,1]
+],
+row = 1,
+col = 3
+
+or
+
+room = [
+  [0,1,1,0,1,0,1,1],
+  [1,1,1,1,1,0,1,1],
+  [1,0,1,1,1,1,1,1],
+  [0,0,0,1,0,0,0,0],
+  [1,1,1,1,1,1,1,1]
+],
+row = 2,
+col = 4
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+I can guess the word using a word from the word list.
+At every guess I get a value representing number of exact matches: value and position
+
+You are given exactly 10 guesses
+
+I take one word and I guess, its output doesn't give me much
+I take another word and I guess, this output and the previous output together might give me something
+
+
+Secret word: acckzz
+["acckzz","ccbazz","eiowzz","abcczz"]
+numGuesses = 3
+
+I guess abcczz, I get 4, that means for chars at right places, task is to know
+which one is at the right place. We need to eliminate character one by one
+Find all characters starting with a? there is none, so a is not possible, find all possible characters with b at second index which is none, so b is also not possible
+I guess ccbazz, I get 3
+I guess eiowzz, I get 2
+
+
+
+
+
+
+words: ["buhuhu", "hahaha", "balleba", "lalala", "churay", "lalaji", "rajpat", "rojiya", "tarzan", "remedy", "bricks", "journa", "kileek"]
+
+notPos = [{b,r},{u,a},{h,j},{u,p},{h,a},{u,t}]
+pos = [{l},{a},{l},{a},{l},{a}]
+guessResult = [{buhuhu, rajpat}, {lalala, lalaji}, {}, {}, {}, {}]
+
+secrete word = kileek
+Guesses:
+buhuhu: 0
+hahaha: Can't guess
+lalala: 1
+lalaji: 1
+rajpat: 0
+rojiya: Can't guess
+tarzan: Can't guess
+remedy: Can't guess
+bricks: Can't guess
+journa: 0 
+notPos = [{b,r,j},{u,a,o},{h,j,u},{u,p,r},{h,a,n},{u,t,a}]
+kileek
+
+
+secret word = hbaczn
+
+Guesses:
+gaxckt: 1    pos = [{g},{a},{x},{c},{k},{t}]
+trlccr: 1    pos = [{g,t}, {a,r}, {x,l}, {c:2}, {k,c}, {r,t}]
+jxwhkz: 0   
+peayuf: 1    pos = [{g,t,p}, {a,r,e}, {x,l,a}, {c:2,y}, {k,c,u} {r,t,f}]
+ldzccp: 1    pos = [{g,t,p,l}, {a,r,e,d}, {x,l,a,d}, {c:3,y}, {k,c:2, u}, 
+ibpghw: 1    
+
+
+
+
+
+
+
