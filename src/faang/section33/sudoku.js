@@ -10,7 +10,7 @@ function convertGridToHashMap(grid) {
     cols.push(new Set());
     for (let row = 0; row < 9; row++) {
       const value = grid[row][col];
-      if (value !== null) cols[col].add();
+      if (value !== null) cols[col].add(value);
     }
   }
   const rows = [];
@@ -39,7 +39,11 @@ function convertGridToHashMap(grid) {
   }
 
   function isValid(newValue, newValueRow, newValueCol) {
-    // if (newValueRow === 0 && newValueCol === 2) {
+    // if (newValueRow === 2 && newValueCol === 0) {
+    //   console.log(
+    //     `for row = ${newValueRow}, col = ${newValueCol} and value = ${newValue}, cols[0] = `,
+    //     cols[0]
+    //   );
     //   if (cols[newValueCol].has(newValue))
     //     console.log(`col has value ${newValue}`);
     //   if (rows[newValueRow].has(newValue))
@@ -76,7 +80,7 @@ function convertGridToHashMap(grid) {
   // console.log("rows = ", rows);
   // console.log("cols = ", cols);
   // console.log("boxes = ", boxes);
-  console.log("boxes", boxes);
+  // console.log("boxes", boxes);
   return {
     cols,
     rows,
@@ -95,23 +99,23 @@ function sudokuSolver(grid) {
     removeValue,
     printGrid,
   } = convertGridToHashMap(grid);
+  console.log("input grid ===");
+  printGrid();
 
   function recursiveSudokuSolver(currentRow, currentCol) {
-    console.log(` ${currentRow} and ${currentCol}`);
+    // // console.log(` ${currentRow} and ${currentCol}`);
     if (currentRow >= 9) return true;
     if (currentCol >= 9) return recursiveSudokuSolver(currentRow + 1, 0);
     if (grid[currentRow][currentCol] === null) {
-      // let lastAddedValue = null;
       for (let i = 1; i <= 9; i++) {
         if (isValid(i, currentRow, currentCol)) {
-          // console.log(`adding value ${i} at ${currentRow} and ${currentCol}`);
-          // lastAddedValue = i;
+          // // console.log(`adding value ${i} at ${currentRow} and ${currentCol}`);
           grid[currentRow][currentCol] = i;
           updateRowsColsBoxes(i, currentRow, currentCol);
           const solved = recursiveSudokuSolver(currentRow, currentCol + 1);
-          // console.log(
-          //   `for ${currentRow},${currentCol} and value = ${i}, answer is ${solved}`
-          // );
+          // // console.log(
+          // //  `for ${currentRow},${currentCol} and value = ${i}, answer is ${solved}`
+          // // );
           if (solved) return true;
           else {
             removeValue(i, currentRow, currentCol);
@@ -119,30 +123,42 @@ function sudokuSolver(grid) {
           }
         }
       }
-      // console.log("No value is valid");
-      // printGrid();
-      // grid[currentRow][currentCol] = null;
-      // removeValue(lastAddedValue, currentRow, currentCol);
+      // // console.log("No value is valid");
+      // // printGrid();
       return false;
     } else {
       return recursiveSudokuSolver(currentRow, currentCol + 1);
     }
   }
-  recursiveSudokuSolver(0, 0);
-  console.log("solved solution = ", grid);
+  const solution = recursiveSudokuSolver(0, 0);
+  console.log("Does solution exist for sudoku?", solution);
+  console.log("solved solution = ");
+  printGrid();
   return grid;
 }
 
+// const sudokuGrid = [
+//   [5, 3, null, null, 7, null, null, null, null],
+//   [6, null, null, 1, 9, 5, null, null, null],
+//   [null, 9, 8, null, null, null, null, 6, null],
+//   [8, null, null, null, 6, null, null, null, 3],
+//   [4, null, null, 8, null, 3, null, null, 1],
+//   [7, null, null, null, 2, null, null, null, 6],
+//   [null, 6, null, null, null, null, 2, 8, null],
+//   [null, null, null, 4, 1, 9, null, null, 5],
+//   [null, null, null, null, 8, null, null, 7, 9],
+// ];
+
 const sudokuGrid = [
-  [5, 3, null, null, 7, null, null, null, null],
-  [6, null, null, 1, 9, 5, null, null, null],
-  [null, 9, 8, null, null, null, null, 6, null],
-  [8, null, null, null, 6, null, null, null, 3],
-  [4, null, null, 8, null, 3, null, null, 1],
-  [7, null, null, null, 2, null, null, null, 6],
-  [null, 6, null, null, null, null, 2, 8, null],
-  [null, null, null, 4, 1, 9, null, null, 5],
-  [null, null, null, null, 8, null, null, 7, 9],
+  [5, 3, null, null, null, null, null, 6, 2],
+  [null, null, 8, null, 1, null, 9, null, null],
+  [null, 4, null, null, null, null, null, 5, null],
+  [null, null, 4, 2, null, 7, 5, null, null],
+  [null, 8, null, 4, null, 1, null, 3, null],
+  [null, null, 5, 6, null, 9, 4, null, null],
+  [null, 7, null, null, null, null, null, 9, null],
+  [null, null, 6, null, 7, null, 2, null, null],
+  [4, 2, null, null, null, null, null, 7, 3],
 ];
 
 sudokuSolver(sudokuGrid);
