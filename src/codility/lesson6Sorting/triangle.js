@@ -33,6 +33,7 @@ function solution(A) {
   [1,2,3,4] we get a condition where first three values is not a triangle
   , ex: say 1,2,3 don't make a triangle, then: 1,2,4 or 1,3,4 also won't make
   a triangle
+  also we don't have to calculate total number of triangles
 
   Got 100%
 */

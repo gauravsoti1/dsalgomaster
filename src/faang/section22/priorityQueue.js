@@ -1,6 +1,9 @@
 class PriorityQueue {
   // * Comparator here expects only true or false, not -1, 0, 1 like other comparators
-  constructor(comparator = (a, b) => a > b, maxSize = Number.POSITIVE_INFINITY) {
+  constructor(
+    comparator = (a, b) => a > b,
+    maxSize = Number.POSITIVE_INFINITY
+  ) {
     this._heap = [];
     this._comparator = comparator;
     this._maxSize = maxSize;
@@ -39,8 +42,7 @@ class PriorityQueue {
   }
 
   push(value) {
-    if(this.size() >= this._maxSize)
-      this.pop();
+    if (this.size() >= this._maxSize) this.pop();
     this._heap.push(value);
     this._siftUp();
 
@@ -85,6 +87,10 @@ class PriorityQueue {
       nodeIdx = greaterChildIdx;
     }
   }
+  print() {
+    console.log("printing heap");
+    console.log(this._heap);
+  }
 }
 
 const pq = new PriorityQueue();
@@ -95,6 +101,8 @@ pq.push(7);
 pq.push(40);
 pq.push(22);
 
-while(!pq.isEmpty()) {
+pq.print();
+
+while (!pq.isEmpty()) {
   console.log(pq.pop());
 }

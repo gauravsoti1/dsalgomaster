@@ -35,10 +35,7 @@ const findSubsets = function(nums) {
       get with subsets.forEach
     */
     subsets.forEach((subset) => subsets.push([...subset, a]));
-    console.log("After iteration no ", index, JSON.stringify(subsets));
-    // for (let i = startIndex; i < endIndex; i++) {
-    //   subsets.push([...subsets[i], a]);
-    // }
+    // // console.log("After iteration no ", index, JSON.stringify(subsets));
   });
   return subsets;
 };

@@ -15,7 +15,7 @@ function getFishesAtTop(stack) {
 }
 
 /*
-    all fish are moving with the same spee
+    all fish are moving with the same speed
     hence fishes moving in the same direction won't meet
 */
 

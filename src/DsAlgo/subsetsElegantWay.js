@@ -6,3 +6,4 @@ const getAllSubsets = (theArray) =>
   );
 
 console.log(getAllSubsets([1, 2, 3]));
+console.log(getAllSubsets([1, 2, 2]));

@@ -1,6 +1,8 @@
 /*
-  We can use Kadane’s algorithm from two directions. First, we can safely ignore A[0] and A[N-1] since by definition they can’t be a part of any double-slice sum.
-  Now, define K1[i] as the maximum sum contiguous subsequence ending at index i, and similarly, define K2[i] as the maximum sum contiguous subsequence starting with index i.
+  We can use Kadane’s algorithm from two directions. First, we can safely ignore A[0] and A[N-1] 
+  since by definition they can’t be a part of any double-slice sum.
+  Now, define K1[i] as the maximum sum contiguous subsequence ending at index i, and similarly, 
+  define K2[i] as the maximum sum contiguous subsequence starting with index i.
   Then, iterate over i, and find the maximum sum of K1[i-1]+K2[i+1]. This is the max double slice sum.
 */
 /*

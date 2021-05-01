@@ -17,6 +17,7 @@ const findSubsets = function(nums) {
     I think we should sort the nums first
     Otherwise we won't be able to compare the duplicates
   */
+  // I checked, sorting is required
   nums.sort();
   // here we are concerned about avoiding duplicates
   /* General psuedocode is that every time we process a new entry

@@ -13,7 +13,7 @@ function convertValueIntoSubset(value, array) {
   let index = 0;
   const subset = [];
   for (let k = value; k > 0; k = k >> 1) {
-    console.log(`for value = ${value}, k = ${k}`);
+    // // console.log(`for value = ${value}, k = ${k}`);
     if ((k & 1) === 1) subset.push(array[index]);
     index++;
   }
