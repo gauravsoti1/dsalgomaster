@@ -106,3 +106,7 @@ pq.print();
 while (!pq.isEmpty()) {
   console.log(pq.pop());
 }
+
+module.exports = {
+  default: PriorityQueue,
+};
