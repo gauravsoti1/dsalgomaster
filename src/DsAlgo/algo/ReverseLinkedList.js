@@ -1,4 +1,4 @@
-const { default: LinkedList } = require("DsAlgo/ds/LinkedList");
+const { default: LinkedList } = require("./LinkedList/LinkedList");
 
 // 1 -> 2 -> 3 -> 4 -> 5
 // 1 <- 2 <- 3 <- 4 <- 5

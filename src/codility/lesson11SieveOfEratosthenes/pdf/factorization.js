@@ -7,7 +7,7 @@
   Smallest prime factor of 50 = 2
 */
 // smallest prime for every i till n which divides the number
-function arrayFactorization(n) {
+function smallestPrimesForEveryNumber(n) {
   const factors = new Array(n + 1).fill(0);
   let i = 2;
   while (i * i <= n) {
@@ -28,9 +28,9 @@ function arrayFactorization(n) {
 }
 
 function factorization(n) {
-  const F = arrayFactorization(n);
-  // console.log(`factors array for ${n} = `);
-  printFactorsArray(arrayFactorization(n));
+  const F = smallestPrimesForEveryNumber(n);
+  // // console.log(`factors array for ${n} = `);
+  // // printFactorsArray(smallestPrimesForEveryNumber(n));
   let x = n;
   const primeFactors = [];
   // loop till the current number has the smallest prime factor greater than 0

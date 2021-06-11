@@ -1,0 +1,1 @@
+[good solution](https://leetcode.com/problems/car-fleet/discuss/1232091/Java-Solution-with-O(N-LogN)-time-and-O(N)-space)

@@ -1,3 +1,7 @@
+/*
+  TODO: use faang course implementation of heap because that's cleaner
+
+*/
 function MaxBinaryHeap() {
   let values = [];
   function getParentIndex(childIndex) {

@@ -1,4 +1,4 @@
-function DoubleLinkedListNode(key, value) {
+function DoublyListNode(key, value) {
   return { key, value, prev: null, next: null };
 }
 
@@ -10,8 +10,8 @@ function DoubleLinkedListNode(key, value) {
 */
 var LRUCache = function(capacity) {
   this.cache = new Map();
-  this.head = DoubleLinkedListNode();
-  this.tail = DoubleLinkedListNode();
+  this.head = DoublyListNode();
+  this.tail = DoublyListNode();
   this.head.next = this.tail;
   this.tail.prev = this.head;
   this.size = 0;
@@ -70,7 +70,7 @@ LRUCache.prototype.put = function(key, value) {
   let node = this.cache.get(key);
   // const node = DoubleLinkedListNode(key, value);
   if (!node) {
-    node = DoubleLinkedListNode(key, value);
+    node = DoublyListNode(key, value);
     this.cache.set(key, node);
     this.addNode(node);
     this.size++;
